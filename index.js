@@ -10,7 +10,6 @@ PouchDB.plugin({
   loadIt: pouchload.load
 })
 
-
 const choo = require('choo')
 const html = require('choo/html')
 const blobStream = require('blob-stream')
@@ -25,15 +24,32 @@ app.mount('body')
 function mainView (state, emit) {
   return html`
     <body>
-      <button onclick=${e => emit('export-project')}>Export project</button>
-      <button onclick=${e => emit('create-mix')}>New Mix</button>
-      <label for="import-project">import project</label>
-      <input onchange=${importProject} id="import-project" type="file" style="display: none;" aria-hidden="true">
-      <label for="import-track">import track</label>
-      <input onchange=${importTrack} id="import-track" type="file" style="display: none;" aria-hidden="true">
-      <ul>
-        ${state.tracks.map(track => html`<li>${track.title}</li>`)}
-      </ul>
+      <nav id="menu">
+          <input onchange=${importProject} id="import-project" type="file" style="display: none;" aria-hidden="true">
+        <ul>
+          <li><a href="#" onclick=${e => emit('create-mix')}>New project</a></li>
+          <li><label class="a" for="import-project">Load project</label></li>
+          <li><a href="#" onclick=${e => emit('export-project')}>Save project</a></li>
+          <li><span style="opacity: 0;">---</span></li>
+          <li><button class="button">Publish</button></li>
+        </ul>
+      </nav>
+
+      <main id="main">
+
+        <section>
+          <input onchange=${importTrack} id="import-track" type="file" style="display: none;" aria-hidden="true">
+          <ul id="files">
+            ${state.tracks.map(track => html`<li>${track.title}</li>`)}
+            <li>
+              <label class="a" for="import-track">+ Add a file</label>
+            </li>
+          </ul>
+        </section>
+
+      </main>
+
+
     </body>
   `
 
@@ -49,7 +65,11 @@ function mainView (state, emit) {
 }
 
 function store (state, emitter) {
-  state.tracks = []
+  state.tracks = [{
+    title: 'hullo',
+  }, {
+    title: 'ilfi'
+  }]
 
   emitter.on('DOMContentLoaded', () => {
     const db = new PouchDB('test-db')

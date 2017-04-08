@@ -1,0 +1,71 @@
+body {
+  background-color: #111;
+  display: flex;
+  margin: 0;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+a, label.a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover, label.a:hover {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+button.button, label.button {
+  background-color: white;
+  padding: 1em 2em;
+}
+
+button.button:hover, label.button:hover {
+  background-color: #CCC;
+  color: #333;
+  cursor: pointer;
+}
+
+nav#menu {
+  display: flex;
+  align-items: center;
+  color: white;
+  min-width: 20em;
+}
+
+nav#menu ul {
+  list-style: none;
+}
+
+nav#menu li {
+  font-size: 2em;
+  font-weight: 500;
+  line-height: 2;
+}
+
+nav#menu button.button {
+  width: 100%;
+  border: none;
+  font-size: 1em;
+  padding: 0.5em 1em;
+}
+
+main#main {
+  width: 100%;
+  padding: 2em;
+}
+
+ul#files {
+  padding-left: 0;
+  list-style: none;
+  color: white;
+  font-size: 2em;
+}
+
+ul#files li {
+  border-top: 1px solid white;
+  padding: 1em;
+  white-space: nowrap;
+}
