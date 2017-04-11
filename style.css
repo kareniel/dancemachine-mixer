@@ -1,9 +1,12 @@
 body {
   background-color: #111;
-  display: flex;
   margin: 0;
   min-height: 100vh;
   font-family: sans-serif;
+}
+
+#content {
+  display: flex;
 }
 
 a, label.a {
@@ -68,4 +71,21 @@ ul#files li {
   border-top: 1px solid white;
   padding: 1em;
   white-space: nowrap;
+}
+
+header {
+  display: flex;
+}
+
+button#close {
+  background: none;
+  color: white;
+  border: none;
+  font-size: 2em;
+  padding: 1em;
+  cursor: pointer;
+}
+
+button#close:hover {
+  opacity: 0.5;
 }

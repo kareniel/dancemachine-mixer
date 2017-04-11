@@ -24,20 +24,24 @@ app.mount('body')
 function mainView (state, emit) {
   return html`
     <body>
-      <nav id="menu">
+      <header>
+        <button id="close">x</button>
+      </header>
+
+      <div id="content">
+
+        <nav id="menu">
           <input onchange=${importProject} id="import-project" type="file" style="display: none;" aria-hidden="true">
-        <ul>
-          <li><a href="#" onclick=${e => emit('create-mix')}>New project</a></li>
-          <li><label class="a" for="import-project">Load project</label></li>
-          <li><a href="#" onclick=${e => emit('export-project')}>Save project</a></li>
-          <li><span style="opacity: 0;">---</span></li>
-          <li><button class="button">Publish</button></li>
-        </ul>
-      </nav>
+          <ul>
+            <li><a href="#" onclick=${e => emit('create-mix')}>New project</a></li>
+            <li><label class="a" for="import-project">Load project</label></li>
+            <li><a href="#" onclick=${e => emit('export-project')}>Save project</a></li>
+            <li><span style="opacity: 0;">---</span></li>
+            <li><button class="button">Publish</button></li>
+          </ul>
+        </nav>
 
-      <main id="main">
-
-        <section>
+        <main id="main">
           <input onchange=${importTrack} id="import-track" type="file" style="display: none;" aria-hidden="true">
           <ul id="files">
             ${state.tracks.map(track => html`<li>${track.title}</li>`)}
@@ -45,10 +49,9 @@ function mainView (state, emit) {
               <label class="a" for="import-track">+ Add a file</label>
             </li>
           </ul>
-        </section>
+        </main>
 
-      </main>
-
+      </div>
 
     </body>
   `
@@ -65,11 +68,7 @@ function mainView (state, emit) {
 }
 
 function store (state, emitter) {
-  state.tracks = [{
-    title: 'hullo',
-  }, {
-    title: 'ilfi'
-  }]
+  state.tracks = []
 
   emitter.on('DOMContentLoaded', () => {
     const db = new PouchDB('test-db')
